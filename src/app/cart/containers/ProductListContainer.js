@@ -24,7 +24,8 @@ function mapDispatchToProps(dispatch)  {
 
          getProducts: function() {
              //TODO
-             
+             let actionFn = actions.getProducts();
+             dispatch(actionFn);
          }
     }
 }

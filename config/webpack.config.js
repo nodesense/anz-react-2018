@@ -7,14 +7,14 @@ var APP_DIR = path.resolve(__dirname, '../src');
 
     
 // //generate script and link tags dynamically with hash code
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // //generate script and link tags dynamically with hash code
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // //Useful for extracting import "mystyle.css" used within js code
 // //used along with css-loaders
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
+ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 var config = {
@@ -39,18 +39,18 @@ var config = {
       },
 
 
-    //   { test: /\.css$/, 
-    //     use: ExtractTextPlugin.extract({
-		// 		fallback: "style-loader",
-		// 		use: {
-		// 			loader: "css-loader",
-		// 			options: {
-		// 				sourceMap: true
-		// 			}
-		// 		},
-		// 		publicPath: "../"
-    //   }) 
-    //  }
+      { test: /\.css$/, 
+        use: ExtractTextPlugin.extract({
+				fallback: "style-loader",
+				use: {
+					loader: "css-loader",
+					options: {
+						sourceMap: true
+					}
+				},
+				publicPath: "../"
+      }) 
+     }
 
 
     
@@ -79,12 +79,12 @@ var config = {
 
 
 
-  //  //create css file from import "mystyle.css" statements
-  //  new ExtractTextPlugin({
-  //   filename: "[name].css",
-  //   disable: false,
-  //   allChunks: true
-  // }),
+   //create css file from import "mystyle.css" statements
+   new ExtractTextPlugin({
+    filename: "[name].css",
+    disable: false,
+    allChunks: true
+  }),
 
     
     new webpack.optimize.CommonsChunkPlugin({
@@ -98,10 +98,10 @@ var config = {
 
 
   //insert link and script tags inside index.html output file 
-  // new HtmlWebpackPlugin({
-  //   template: './src/index.html', //input file
-  //   filename: 'index.html', //output file name
-  // })
+  new HtmlWebpackPlugin({
+    template: './src/index.html', //input file
+    filename: 'index.html', //output file name
+  })
 
   ],
 

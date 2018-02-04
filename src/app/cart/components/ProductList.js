@@ -20,6 +20,15 @@ export default class ProductList extends Component {
              addItemToCart
             } = this.props;
 
+
+        if (loading) {
+            return (
+                <div>
+                    <h2>Loading..</h2>
+                </div>
+            )
+        }
+
         return (
             <div> 
             <h2>Product List</h2>

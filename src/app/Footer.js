@@ -1,5 +1,10 @@
 import React from 'react';
 
+import PropTypes from "prop-types";
+
+// extract text plug-ins
+import "./Footer.css";
+
 // props passed as params
 export default function Footer(props) {
     //let year = 2017;
@@ -13,7 +18,7 @@ export default function Footer(props) {
 
  
     return (
-    <div>
+    <div className="highlight">
         <hr />
         <p>Copyrights@ {year}, {company} </p>
    
@@ -23,4 +28,10 @@ export default function Footer(props) {
 
     </div>
     )
+}
+
+//keyword
+Footer.propTypes = {
+    year: PropTypes.number.isRequired, // mandatory
+    company: PropTypes.string
 }

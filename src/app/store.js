@@ -68,7 +68,7 @@ let store = createStore(rootReducer, {
                                 counter: counter
                             },
                         
-                        applyMiddleware(loggerMiddleware, )
+                        applyMiddleware(loggerMiddleware, thunk)
                         
                         );
 

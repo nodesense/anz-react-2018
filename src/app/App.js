@@ -39,7 +39,7 @@ export class App extends React.Component {
                         </Route>
 
                         <Route path="/products" component={ProductList} />
-                        
+
                         <Route path="/cart" component={Cart} />
                         <Route path="/about" component={About} />
                         <Route path="*" component={NotFound} />
@@ -49,7 +49,7 @@ export class App extends React.Component {
                 </Router>
                  
 
-                <Footer year="2018" 
+                <Footer year={2018}
                       company="React App"
                       address= { {pincode: 560000} }
                       

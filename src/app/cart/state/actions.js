@@ -47,16 +47,47 @@ export const  emptyCart = () => {
  
 export const  initProducts = (products) => {
     return {
-        type: ActionTypes.initProducts,
+        type: ActionTypes.INIT_PRODUCTS,
         payload: {
             products: products
         }
     }
 }
  
-// create actions and return actions
 
+
+// create actions and return actions
 // //thunk, return a function as an action
+
+import * as service from "./service";
+
+export function getProducts() {
+    //return functions as an action
+    return function(dispatch, getState) {
+        // called by thunk middleware
+        console.log("get products now");
+ 
+        dispatch({
+            type: 'LOADING',
+            payload: { loading: true}
+        })
+
+        service.fetchProducts()
+        .then ( function (products) {
+            let action = initProducts(products);
+            dispatch(action);
+
+            dispatch({
+                type: 'LOADING',
+                payload: { loading: false}
+            })
+        })
+    }
+}
+
+
+
+
 // export function getProducts() {
 //     console.log("getProducts begin");
 
