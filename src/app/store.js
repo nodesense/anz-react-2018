@@ -1,4 +1,37 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers,
+        applyMiddleware
+} from 'redux';
+
+import thunk from 'redux-thunk';
+
+import cartReducer 
+        from './cart/state/reducers/cart-reducer';
+
+import productReducer 
+    from './cart/state/reducers/product-reducer';
+
+
+
+// called by store
+function loggerMiddleware(store) {
+    return function(next) {
+        return function(action) {
+            console.log("middleware", typeof action, action);
+
+            let result = next(action);
+
+            // done with reducers
+            if (action.type == 'INCREMENT' || 
+                action.type == 'DECREMENT') {
+                    let state = store.getState();
+                    localStorage.setItem("counter", state.counter)
+                }
+             
+            return result;
+
+        }
+    }
+}
 
 //counterReducer.js
 const INITIAL_STATE = 0;
@@ -23,13 +56,21 @@ function counterReducer(state = INITIAL_STATE,
 // reducer.js ends
 
 let rootReducer = combineReducers({
-    counter: counterReducer
+    counter: counterReducer,
+    cartItems: cartReducer,
+    productState: productReducer
     //cartItems: cartReducer
 });
 
+let counter = parseInt(localStorage.counter) || 0
+
 let store = createStore(rootReducer, {
-    counter: 1000
-} );
+                                counter: counter
+                            },
+                        
+                        applyMiddleware(loggerMiddleware, )
+                        
+                        );
 
 export default store;
 

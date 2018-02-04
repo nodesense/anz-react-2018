@@ -1,4 +1,6 @@
 
+import "whatwg-fetch";
+
 // bootstrapping
 // put react app into browser
 

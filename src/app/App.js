@@ -10,6 +10,9 @@ import Home from "./HomeContainer";
 import Cart from "./cart/components/Cart";
 import About from './About';
 
+import ProductList 
+    from "./cart/containers/ProductListContainer";
+
 import NotFound from './NotFound';
 
 import {HashRouter as Router, 
@@ -34,6 +37,9 @@ export class App extends React.Component {
                         <Route path="/" exact  component={Home}  >
                         
                         </Route>
+
+                        <Route path="/products" component={ProductList} />
+                        
                         <Route path="/cart" component={Cart} />
                         <Route path="/about" component={About} />
                         <Route path="*" component={NotFound} />
